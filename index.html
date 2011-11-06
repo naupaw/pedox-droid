@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>PhoneGap</title>
+  <script type="text/javascript" charset="utf-8" src="phonegap-1.0.0.js"></script>      
+  <script type="text/javascript" charset="utf-8">
+     function onLoad(){
+          document.addEventListener("deviceready", onDeviceReady, true);
+     }
+     function onDeviceReady(){
+          navigator.notification.alert("PhoneGap is working");
+     }
+  </script>
+<style>
+body{font-size:13px;padding:0;margin:0;}
+#header{background:#333;color:#fff;padding:3px;}
+
+</style>
+  </head>
+  <body onload="onLoad();">
+<div id='header'>ThePedox Activity</div>
+mainfest test
+  </body>
+</html>
