@@ -2,27 +2,44 @@
 <html>
   <head>
     <title>PhoneGap</title>
-  <script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
+<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
+<script src="jquery-1.5.min.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" charset="utf-8">
      function onLoad(){
           document.addEventListener("deviceready", onDeviceReady, true);
      }
      function onDeviceReady(){
-          
-          document.addEventListener("menubutton", onMenuKeyDown, false);
+          //navigator.notification.alert("PhoneGap is working");
+  	  document.addEventListener("menubutton", state, false);
+		  $('#info').html('Anda Menggunakan '+device.name+' dengan OS '+device.platform+' versi '+device.version);
      }
-     function onMenuKeyDown(){
-       navigator.notification.alert("MenuKeyDown Granted");
-     }
+	 function state(){
+		 var st = $('.menu-upsite').attr('name');
+		 if(st == 'close'){
+			 $('.menu-upsite').attr({name:'open'});
+			 $('.menu-upsite').animate({'bottom': '+=50px'}, 'fast');
+		 }else{
+			 $('.menu-upsite').attr({name:'close'});
+			 $('.menu-upsite').animate({'bottom': '-=50px'}, 'fast');
+		 }
+	 }
   </script>
 <style>
-body{font-size:13px;padding:0;margin:0;}
-#header{background:#333;color:#fff;padding:3px;}
-
+body{font-size:13px;padding:0;margin:0;font-family:Verdana, Geneva, sans-serif}
+h1,h2,h3{font-weight:normal;}
+#header{background:#333;color:#fff;padding:5px;text-align:center;}
+.menu-upsite{background:#fbfbfb;border:1px solid #eaeaea;padding:20px 10px;position:fixed;width:93%;bottom:-50px;margin-left:2px;}
 </style>
   </head>
   <body onload="onLoad();">
-<div id='header'>ThePedox Activity</div>
-mainfest test
+  <a href='#' onClick="$('.menu-upsite').animate({'bottom': '+=50px'}, 'fast');">Test</a>
+  <a href='#' onClick="state()">Cek state</a>
+<div id='header'>The Profesonality</div>
+<h1>Applikasi gdebug</h1>
+berikut adalah informasi anda<br>
+<div id='info'>
+</div>
+oke semua sudah selesai terimakasih
+<div class='menu-upsite' style="bottom: -50px;" name="close">Lorem Ipsum rules</div>
   </body>
 </html>
