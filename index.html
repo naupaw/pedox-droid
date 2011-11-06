@@ -10,9 +10,25 @@
      }
      function onDeviceReady(){
           //navigator.notification.alert("PhoneGap is working");
-  	  document.addEventListener("menubutton", state, false);
+		  document.addEventListener("menubutton", state, false);
 		  $('#info').html('Anda Menggunakan '+device.name+' dengan OS '+device.platform+' versi '+device.version);
-     }
+//states
+function checkConnection() {
+    var networkState = navigator.network.connection.type;
+
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Gag tau gan';
+    states[Connection.WIFI]     = 'Ente menggunakan Koneksi wai fi';
+    states[Connection.CELL_2G]  = 'Hari gini pake dua Ji (2G)';
+    states[Connection.CELL_3G]  = 'Anda Menggunakan Koneksi TriJi (3G)';
+    states[Connection.CELL_4G]  = 'Anda Menggunakan Koneksi ForJI(4G)';
+    states[Connection.NONE]     = 'Anda tidak terhubung dengan internet (payah)';
+
+    $('.koneksi').html('The Koneksi : ' + states[networkState]);
+}
+
+checkConnection();
+	 }
 	 function state(){
 		 var st = $('.menu-upsite').attr('name');
 		 if(st == 'close'){
@@ -23,23 +39,36 @@
 			 $('.menu-upsite').animate({'bottom': '-=50px'}, 'fast');
 		 }
 	 }
+	 
   </script>
 <style>
 body{font-size:13px;padding:0;margin:0;font-family:Verdana, Geneva, sans-serif}
 h1,h2,h3{font-weight:normal;}
 #header{background:#333;color:#fff;padding:5px;text-align:center;}
 .menu-upsite{background:#fbfbfb;border:1px solid #eaeaea;padding:20px 10px;position:fixed;width:93%;bottom:-50px;margin-left:2px;}
+input[type=button]{
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#dddddd));
+background: -webkit-linear-gradient(top, #ffffff 0%,#dddddd 100%);border:1px solid #999;
+padding:5px 10px;
+color:#333;
+font-weight:bold;
+outline:none;
+	}
+input[type=button]:active{
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(100%,#ffffff));
+background: -webkit-linear-gradient(top, #dddddd 0%,#ffffff 100%);
+}
 </style>
   </head>
   <body onload="onLoad();">
-  <a href='#' onClick="$('.menu-upsite').animate({'bottom': '+=50px'}, 'fast');">Test</a>
-  <a href='#' onClick="state()">Cek state</a>
 <div id='header'>The Profesonality</div>
 <h1>Applikasi gdebug</h1>
 berikut adalah informasi anda<br>
 <div id='info'>
 </div>
 oke semua sudah selesai terimakasih
-<div class='menu-upsite' style="bottom: -50px;" name="close">Lorem Ipsum rules</div>
+<input type="button" value="maho" onclick='alert("ente maho")'/>
+<div class='koneksi'></div>
+<div class='menu-upsite' style="bottom: -50px;" name="close">ngetes Menu button</div>
   </body>
 </html>
